@@ -1,0 +1,37 @@
+local Players = game:GetService("Players")
+local ReplicatedStorage = game:GetService("ReplicatedStorage")
+local Workspace = game:GetService("Workspace")
+
+local player = Players.LocalPlayer
+local playerGui = player:WaitForChild("PlayerGui")
+local eggsFolder = Workspace:WaitForChild("Eggs", 10)
+local stealRemote = ReplicatedStorage:FindFirstChild("RequestAutoEgg")
+local placeRemote = ReplicatedStorage:FindFirstChild("RequestAutoPlaceEgg")
+
+local rarities = {"Common", "Rare", "Epic", "Legendary", "Mythic", "Secret"}
+local selectedRarity = 1
+local running = false
+local placing = false
+local MAX_DIST = 35
+
+local gui = Instance.new("ScreenGui", playerGui)
+gui.Name = "AutoEggPro"
+
+local frame = Instance.new("Frame", gui)
+frame.Size = UDim2.fromOffset(300, 350)
+frame.Position = UDim2.new(0.5, -150, 0.5, -175)
+frame.BackgroundColor3 = Color3.fromRGB(25, 25, 30)
+Instance.new("UICorner", frame).CornerRadius = UDim.new(0, 10)
+local stroke = Instance.new("UIStroke", frame)
+stroke.Color = Color3.fromRGB(140, 80, 255)
+stroke.Thickness = 2
+
+local function makeBtn(txt, y, col)
+    local b = Instance.new("TextButton", frame)
+    b.Size = UDim2.new(1, -30, 0, 35)
+    b.Position = UDim2.fromOffset(15, y)
+    b.BackgroundColor3 = col or Color3.fromRGB(45, 45, 55)
+    b.TextColor3 = Color3.new(1, 1, 1)
+    b.TextSize = 14
+    b.Text = txt
+    Instance.new
